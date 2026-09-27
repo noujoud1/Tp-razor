@@ -1,0 +1,27 @@
+﻿@page
+@model IndexModel
+@{ ViewData["Title"] = "Accueil"; }
+
+<div class="container mt-4">
+    <div class="p-4 bg-light rounded-3 border mb-4">
+        <h1 class="text-primary">@Model.MessageAccueil</h1>
+        <p class="text-secondary fst-italic">@Model.MessageAccueilDynamique</p>
+        <p class="text-muted">Date serveur : @DateTime.Now.ToString("dd/MM/yyyy HH:mm")</p>
+    </div>
+
+    <h3>Programme d'apprentissage (@Model.Modules.Count modules) :</h3>
+    <ul class="list-group mb-4">
+        @foreach (var module in Model.Modules)
+        {
+            <li class="list-group-item">✔ @module</li>
+        }
+    </ul>
+
+    <h3>Prérequis :</h3>
+    <ul class="list-group">
+        @foreach (var prereq in Model.Prerequis)
+        {
+            <li class="list-group-item">📌 @prereq</li>
+        }
+    </ul>
+</div>

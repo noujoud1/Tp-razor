@@ -1,0 +1,40 @@
+@page
+@model TPIntroRazor.Pages.CalculModel
+@{ ViewData["Title"] = "Calculateur d'âge"; }
+
+<div class="container mt-4" style="max-width: 450px;">
+    <h2 class="mb-3">Calculateur d'âge</h2>
+
+    <form method="post">
+        <div class="mb-3">
+            <label class="form-label">Votre nom :</label>
+            <input asp-for="Nom" class="form-control" />
+            <span asp-validation-for="Nom" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Année de naissance :</label>
+            <input asp-for="AnneeNaissance" class="form-control" />
+            <span asp-validation-for="AnneeNaissance" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Calculer</button>
+    </form>
+
+    @if (!string.IsNullOrEmpty(Model.Message))
+    {
+        <div class="alert @(Model.EstValide ? "alert-success" : "alert-danger") mt-3">
+            @Model.Message
+        </div>
+
+        @if (Model.EstValide)
+        {
+            <ul class="list-group">
+                <li class="list-group-item">🎂 Vous atteindrez 100 ans en <strong>@Model.AnneeCentenaire</strong></li>
+                <li class="list-group-item">📅 Vous êtes né(e) dans les <strong>@Model.Decennie</strong></li>
+            </ul>
+        }
+    }
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
